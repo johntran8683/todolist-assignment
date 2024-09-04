@@ -23,6 +23,10 @@ function AddTodoForm({ addTodo }: AddTodoFormProps) {
             <div>
                 <label>Title:</label>
                 <input
+                  /* Bug 2: It need to bind the input field's value to the title variable to make sure consistency 
+                    between UI and the underline state                   
+                   */
+                    value={title}
                     type="text"
                     placeholder="Provide a title for the new To Do"
                     onChange={(e) => setTitle(e.target.value)}
