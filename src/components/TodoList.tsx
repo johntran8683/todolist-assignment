@@ -17,6 +17,9 @@ function TodoList({ todos, deleteTodo, toggleComplete, toggleUrgent }: TodoListP
         <ul>
             {todos.map((todo) => (
                 <TodoItem
+                    /* Bug 1: It needs to give each array item a key to help React know what exacly has happened
+                    and make correct update the DOM tree */ 
+                    key={todo.id}
                     todo={todo}
                     deleteTodo={deleteTodo}
                     toggleComplete={toggleComplete}
