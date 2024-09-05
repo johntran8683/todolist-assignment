@@ -46,12 +46,15 @@ export default function Home() {
   const toggleProperty = useCallback((id: number, property: keyof Pick<Todo, 'isCompleted' | 'isUrgent'>) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
-        todo[property] = !todo[property] as boolean;
+      /* Bug 6: Fixed state mutation issue by returning a new object instead of modifying the original todo.
+        This ensures React detects the change and properly re-renders the component. */
+        return { ...todo, [property]: !todo[property] as boolean };
       }
       return todo;
     });
-    setTodos(updatedTodos);
-  }, [setTodos]);
+
+    setTodos(updatedTodos);      
+  }, [todos]); // `todos` should be in the dependencies, `setTodos` is not needed
 
   const displayTodoList = (todoList:Todo[]) => {
     return (
