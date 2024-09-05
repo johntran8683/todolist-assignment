@@ -13,6 +13,10 @@ function AddTodoForm({ addTodo }: AddTodoFormProps) {
     const [desc, setDesc] = useState<string>('');
 
     const handleSubmit = (event: React.FormEvent) => {
+      /* Fixed bug by adding event.preventDefault() to prevent the default form submission behavior,
+         which would otherwise reload the page and disrupt the form submission process. 
+      */
+        event.preventDefault();
         addTodo(title, desc);
         setTitle('');
         setDesc('');
