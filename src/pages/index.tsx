@@ -37,7 +37,8 @@ export default function Home() {
   };
 
   const deleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id === id));
+    /* Bug 3: Corrected logic to remove the specified todo by filtering out the matching id */
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const toggleProperty = useCallback((id: number, property: keyof Pick<Todo, 'isCompleted' | 'isUrgent'>) => {
