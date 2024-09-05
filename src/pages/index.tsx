@@ -32,8 +32,10 @@ export default function Home() {
       isUrgent: false,
     };
 
-    todos.push(newTodo);
-    setTodos(todos);
+    /* Bug 5: The push method mutates the array directly, preventing React from detecting changes and triggering re-render.
+       To fix this, create a new array by spreading the old array and adding the new item. */
+
+    setTodos([...todos, newTodo]);
   };
 
   const deleteTodo = (id: number) => {
